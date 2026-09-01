@@ -42,6 +42,7 @@ const DS5_INPUT_CONFIG = {
   dpadByte: 7,
   l2AnalogByte: 4,
   r2AnalogByte: 5,
+  imuOffset: 15,
   touchpadOffset: 32,
 };
 
@@ -210,6 +211,9 @@ function ds5_color(serialNumber) {
     '10': 'Chroma Teal',
     '11': 'Chroma Indigo',
     '12': 'Chroma Pearl',
+    '13': 'HyperPop Techno Red',
+    '14': 'HyperPop Remix Green',
+    '15': 'HyperPop Rhythm Blue',
     '30': '30th Anniversary',
     'Z1': 'God of War Ragnarok',
     'Z2': 'Spider-Man 2',
@@ -218,6 +222,10 @@ function ds5_color(serialNumber) {
     'Z6': 'The Last of Us',
     'ZA': 'God of War 20th Anniversary',
     'ZB': 'Icon Blue Limited Edition',
+    'ZC': 'Ghost of Yōtei Limited Edition',
+    'ZD': 'Marathon Limited Edition',
+    'ZE': 'Genshin Impact Limited Edition',
+    'ZF': '007 First Light Limited Edition',
   };
 
   const colorCode = serialNumber.slice(4, 6);
@@ -546,7 +554,8 @@ class DS5Controller extends BaseController {
     if(a == 0x05) return "BDM-030";
     if(a == 0x06) return "BDM-040";
     if(a == 0x07 || a == 0x08) return "BDM-050";
-    // TODO 0x09..0x10?
+    if(a == 0x09) return "BDM-060R";
+    // TODO 0x10?
     if(a == 0x11) return "BDM-060M";
     // TODO 0x12?
     if(a == 0x13) return "BDM-060X";
